@@ -1,0 +1,11 @@
+name: Pull Request Action test
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: 
+  pull_request:
+    branches:
+      -main
+jobs:
+  Pr-Action-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Pull Request Action"
