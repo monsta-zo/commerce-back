@@ -1,4 +1,4 @@
-name: Deply to EC2
+name: Deploy to EC2
 on:
   push:
     branches: [ "main" ]
@@ -20,7 +20,7 @@ jobs:
       run: ./gradlew build
       
     - name: Deploy to EC2
-      uses: appleboy/ssh-action@v3
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
