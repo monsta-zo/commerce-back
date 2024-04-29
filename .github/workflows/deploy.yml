@@ -20,12 +20,12 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
-    # - uses: webfactory/ssh-agent@v0.7.0
-    #   with:
-    #     ssh-private-key: ${{ secrets.EC2_PRIVATE_KEY }}
-    # - name: Deploy to EC2
-    #   run: |
-    #     rsync -avz -e "ssh -o StrictHostKeyChecking=no" -p ./build/libs/commerce-back-0.0.1.jar ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/commerce-back/
+    - uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.EC2_PRIVATE_KEY }}
+    - name: Deploy to EC2
+      run: |
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" -p ./build/libs/commerce-back-0.0.1.jar ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:commerce-back/
     - uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
