@@ -19,19 +19,20 @@ jobs:
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
     - name: Build with Gradle Wrapper
       run: ./gradlew build
-    - name: Build Check
-      run: |
-        cd build/libs
-        ls
-      
+
+    - uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.EC2_PRIVATE_KEY }}
     - name: Deploy to EC2
-      uses: appleboy/ssh-action@v1.0.3
+      run: |
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" -p ./build/libs/commerce-back-0.0.1.jar ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/
+    - uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
-          head hello.txt
+          cd
   
     
 
