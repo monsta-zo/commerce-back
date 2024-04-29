@@ -33,7 +33,7 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
           cd commerce-back
-          ls
+          java -jar commerce-back-0.0.1.jar
   
     
 
