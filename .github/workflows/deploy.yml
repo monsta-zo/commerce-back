@@ -33,7 +33,7 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
           cd commerce-back
-          nohup java -jar commerce-back-0.0.1.jar > /dev/null 2>&1 &
+          nohup java -jar commerce-back-0.0.1.jar > ./logfile.log 2>&1 &
   
     
 
