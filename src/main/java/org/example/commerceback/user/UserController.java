@@ -26,8 +26,8 @@ public class UserController {
         return ResponseEntity.ok().body(ApiUtils.success("로그인이 완료되었습니다.", userService.login(requestDTO)));
     }
 
-    @GetMapping("/hello")
+    @GetMapping("/test")
     public String hello() {
-        return "hi";
+        return "test compeleted";
     }
 }
